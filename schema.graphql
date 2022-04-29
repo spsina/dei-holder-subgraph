@@ -1,0 +1,11 @@
+type TransferTransaction @entity {
+  id: ID!
+  from: Bytes!
+  to: Bytes!
+  amount: BigInt!
+}
+
+type Holder @entity {
+  id: ID!
+  address: Bytes!
+}
