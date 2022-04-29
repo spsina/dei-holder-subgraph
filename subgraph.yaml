@@ -1,0 +1,83 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: DEIStablecoin
+    network: fantom
+    source:
+      address: "0xDE12c7959E1a72bbe8a5f7A1dc8f8EeF9Ab011B3"
+      abi: DEIStablecoin
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - CollateralRatioRefreshed
+        - CollateralRatioToggled
+        - DEIBurned
+        - DEIMinted
+        - DEIStepSet
+        - DEUSAddressSet
+        - DIPSet
+        - GrowthRatioBandSet
+        - NameAndSymbolSet
+        - OracleSet
+        - PoolAdded
+        - PoolRemoved
+        - PriceBandSet
+        - RefreshCooldownSet
+        - ReserveTrackerSet
+        - RoleAdminChanged
+        - RoleGranted
+        - RoleRevoked
+        - Transfer
+        - UseGrowthRatioSet
+      abis:
+        - name: DEIStablecoin
+          file: ./abis/DEIStablecoin.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: CollateralRatioRefreshed(uint256)
+          handler: handleCollateralRatioRefreshed
+        - event: CollateralRatioToggled(bool)
+          handler: handleCollateralRatioToggled
+        - event: DEIBurned(indexed address,indexed address,uint256)
+          handler: handleDEIBurned
+        - event: DEIMinted(indexed address,indexed address,uint256)
+          handler: handleDEIMinted
+        - event: DEIStepSet(uint256)
+          handler: handleDEIStepSet
+        - event: DEUSAddressSet(address)
+          handler: handleDEUSAddressSet
+        - event: DIPSet(bool)
+          handler: handleDIPSet
+        - event: GrowthRatioBandSet(uint256,uint256)
+          handler: handleGrowthRatioBandSet
+        - event: NameAndSymbolSet(string,string)
+          handler: handleNameAndSymbolSet
+        - event: OracleSet(address)
+          handler: handleOracleSet
+        - event: PoolAdded(address)
+          handler: handlePoolAdded
+        - event: PoolRemoved(address)
+          handler: handlePoolRemoved
+        - event: PriceBandSet(uint256,uint256)
+          handler: handlePriceBandSet
+        - event: RefreshCooldownSet(uint256)
+          handler: handleRefreshCooldownSet
+        - event: ReserveTrackerSet(address)
+          handler: handleReserveTrackerSet
+        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+          handler: handleRoleAdminChanged
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: UseGrowthRatioSet(bool)
+          handler: handleUseGrowthRatioSet
+      file: ./src/mapping.ts
